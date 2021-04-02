@@ -47,6 +47,196 @@ var gis = require('g-i-s');
 
 
 if (config.WORKTYPE == 'private') {
+    
+    Asena.addCommand({ pattern: 'randanime', fromMe: true }, async (message, match) => {
+
+        if (message.jid === '905524317852-1612300121@g.us') {
+
+            return;
+        }
+
+        await axios
+          .get(`https://videfikri.com/api/anime/neko`)
+          .then(async (response) => {
+            const {
+              status,
+              url_gbr,
+            } = response.data.result
+
+            const imageBuffer = await axios.get(url_gbr, {
+              responseType: 'arraybuffer',
+            })
+
+            const msg = `
+            *${Lang.HTTP_STATUS}*: ${status}
+            `
+            await message.sendMessage(Buffer.from(imageBuffer.data), MessageType.image, {
+                caption: msg
+            })
+          })
+      },
+    )
+
+    Asena.addCommand({ pattern: 'ig ?(.*)', fromMe: true, usage: Lang.IG_USAGE, desc: Lang.IG_DESC }, async (message, match) => {
+    
+            if (message.jid === '905524317852-1612300121@g.us') {
+    
+                return;
+            }
+    
+            const link = match[1]
+    
+            if (!link) return await message.sendMessage(errorMessage(Lang.IG_NEED_WORD))
+    
+            await message.sendMessage(infoMessage(Lang.IG_LOADING))
+    
+            await axios
+              .get(`https://videfikri.com/api/igdl/?url=${link}`)
+              .then(async (response) => {
+                const {
+                  status,  
+                  creator,
+                  type_post,
+                  full_name,
+                  username,
+                  caption,
+                  like,
+                  comment,
+                  video,
+                  duration,
+                } = response.data.result
+                
+                const videoBuffer = await axios.get(video, {
+                  responseType: 'arraybuffer',
+                })
+    
+                const msg = `
+                *${Lang.HTTP_STATUS}*: ${status}
+                *${Lang.CREATOR}*: ${creator}
+                *${Lang.TYPE_HOST}*: ${type_post}
+                *${Lang.FULL_NAME}*: ${full_name}
+                *${Lang.USERNAME}*: ${username}
+                *${Lang.CAPTON}*: ${caption}
+                *${Lang.LIKE}*: ${like}
+                *${Lang.COMMENT}*: ${comment}
+                *${Lang.DURATION}*: ${duration}
+                `
+                await message.sendMessage(Buffer.from(videoBuffer.data), MessageType.video, {
+                    caption: msg
+                })
+              })
+              .catch(
+                async (err) => await message.sendMessage(errorMessage(Lang.IG_NOT_FOUND + link)),
+              )           
+          },
+        )
+        
+        Asena.addCommand({ pattern: 'fb ?(.*)', fromMe: true, usage: Lang.FB_USAGE, desc: Lang.FB_DESC }, async (message, match) => {
+        
+                if (message.jid === '905524317852-1612300121@g.us') {
+        
+                    return;
+                }
+        
+                const link = match[1]
+        
+                if (!link) return await message.sendMessage(errorMessage(Lang.FB_NEED_WORD))
+        
+                await message.sendMessage(infoMessage(Lang.FB_LOADING))
+        
+                await axios
+                  .get(`https://videfikri.com/api/fbdl/?urlfb=${link}`)
+                  .then(async (response) => {
+                    const {
+                      status,
+                      creator,
+                      judul,
+                      url,
+                    } = response.data.result
+        
+                    const videoBuffer = await axios.get(url, {
+                      responseType: 'arraybuffer',
+                    })
+        
+                    const msg = `
+                    *${Lang.HTTP_STATUS}*: ${status}
+                    *${Lang.CREATOR}*: ${creator}
+                    *${Lang.CAPTION}*: ${judul}
+                    `
+                    await message.sendMessage(Buffer.from(videoBuffer.data), MessageType.video, {
+                        caption: msg
+                    })
+                  })
+                  .catch(
+                    async (err) => await message.sendMessage(errorMessage(Lang.FB_NOT_FOUND + link)),
+                  )
+              },
+            )     
+
+            Asena.addCommand({ pattern: 'twitter ?(.*)', fromMe: true, usage: Lang.TWEET_USAGE, desc: Lang.TWEET_DESC }, async (message, match) => {
+
+        if (message.jid === '905524317852-1612300121@g.us') {
+
+            return;
+        }
+
+        const link = match[1]
+
+        if (!link) return await message.sendMessage(errorMessage(Lang.TWEET_NEED_WORD))
+
+        await message.sendMessage(infoMessage(Lang.TWEET_LOADING))
+
+                await axios
+                  .get(`https://videfikri.com/api/stalktwit/?username=${link}`)
+                  .then(async (response) => {
+                    const {
+                      status,
+                      creator,
+                      full_name,
+                      username,
+                      followers,
+                      following,
+                      tweets,
+                      profile,
+                      verified,
+                      listed_count,
+                      favourites,
+                      joined_on,
+                      profile_banner,
+                    } = response.data.result
+
+                    const profileBuffer = await axios.get(profile, {
+                          responseType: 'arraybuffer',
+                        })
+
+                    const bannerBuffer = await axios.get(profile_banner, {
+                          responseType: 'arraybuffer',
+                })
+
+                    const msg = `
+                    *${Lang.HTTP_STATUS}*: ${status}
+                    *${Lang.CREATOR}*: ${creator}
+                    *${Lang.USERNAME}*: ${username}
+                    *${Lang.FULL_NAME}*: ${full_name}
+                    *${Lang.FOLLOWERS}*: ${followers}
+                    *${Lang.FOLLOWING}*: ${following}
+                    *${Lang.TWEETS}*: ${tweets}
+                    *${Lang.VERIFIED}*: ${verified}
+                    *${Lang.LISTED_COUNT}*: ${listed_count}
+                    *${Lang.FAVOURITES}*: ${favourites}
+                    *${Lang.JOINED_ON}*: ${joined_on}
+                    `
+                    await message.sendMessage(Buffer.from(profileBuffer.data), MessageType.image, {
+                        caption: msg
+                    })
+                    await message.sendMessage(Buffer.from(bannerBuffer.data), MessageType.image, {
+                    })
+                  })
+                  .catch(
+                    async (err) => await message.sendMessage(errorMessage(Lang.TWEET_NOT_FOUND + link)),
+                  )
+              },
+            )       
 
     Asena.addCommand({pattern: 'trt(?: |$)(\\S*) ?(\\S*)', desc: Lang.TRANSLATE_DESC, usage: Lang.TRANSLATE_USAGE, fromMe: true}, (async (message, match) => {
 
