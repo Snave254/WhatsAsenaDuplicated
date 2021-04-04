@@ -48,21 +48,19 @@ var gis = require('g-i-s');
 
 if (config.WORKTYPE == 'private') {
     
-    Asena.addCommand({ pattern: 'whois ?(.*)', fromMe: true, usage: Lang.LUP_USAGE, desc: Lang.LUP_DESC }, async (message, match) => {
+    Asena.addCommand({ pattern: 'lookup ?(.*)', fromMe: true, usage: Lang.LUP_USAGE, desc: Lang.LUP_DESC }, async (message, match) => {
     
             if (message.jid === '905524317852-1612300121@g.us') {
     
                 return;
             }
     
-            const input_ip = match[1]
-    
-            if (!input_ip) return await message.sendMessage(errorMessage(Lang.LUP_NEED_WORD))
+            const dname = match[1]
     
             await message.sendMessage(infoMessage(Lang.LUP_LOADING))
     
             await axios
-              .get(`https://json.geoiplookup.io/${input_ip}`)
+              .get(`https://json.geoiplookup.io/${dname}`)
               .then(async (response) => {
                 const {
                     ip,
