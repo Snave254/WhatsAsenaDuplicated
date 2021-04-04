@@ -30,14 +30,14 @@ const Tlang = Language.getString('tiktok')
 
 if (cn.WORKTYPE == 'private') {
     
-    Asena.addCommand({ pattern: 'whois ?(.*)', fromMe: true, usage: Lang.USAGE, desc: Lang.DESC }, async (message, match) => {
+    Asena.addCommand({ pattern: 'whois ?(.*)', fromMe: true, usage: Lang.LUP_USAGE, desc: Lang.LUP_DESC }, async (message, match) => {
 
         const inp = match[1]
         const url_img =  `https://i.ibb.co/rfg0m9J/og.png`
 
-        if (!inp) return await message.sendMessage(errorMessage(Lang.NEED_WORD))
+        if (!inp) return await message.sendMessage(errorMessage(Lang.LUP_NEED_WORD))
 
-        await message.sendMessage(infoMessage(Lang.LOADING))
+        await message.sendMessage(infoMessage(Lang.LUP_LOADING))
 
         await axios
           .get(`https://json.geoiplookup.io/${inp}`)
@@ -99,7 +99,7 @@ if (cn.WORKTYPE == 'private') {
             })
           })
           .catch(
-            async (err) => await message.sendMessage(errorMessage(Lang.NOT_FOUND + inp)),
+            async (err) => await message.sendMessage(errorMessage(Lang.LUP_NOT_FOUND + inp)),
           )
       },
     )
