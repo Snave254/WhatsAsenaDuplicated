@@ -31,6 +31,7 @@
 | Ping             |      ✔️      |
 | Bug report       |      ✔️      |
 | Random Qoutes    |      ✔️      |
+| IP Lookup(whois) |      ✔️      |
 
 |        Owner       | Availability |
 | :----------------: | :----------: |
