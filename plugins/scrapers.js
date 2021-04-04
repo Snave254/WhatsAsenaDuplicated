@@ -112,7 +112,7 @@ if (config.WORKTYPE == 'private') {
                await message.client.sendMessage(message.jid,msg,MessageType.text);
               })
               .catch(
-                async (err) => await message.sendMessage(errorMessage(Lang.LUP_NOT_FOUND + input_ip)),
+                async (err) => await message.sendMessage(errorMessage(Lang.LUP_NOT_FOUND + dname)),
               )           
           },
         )
