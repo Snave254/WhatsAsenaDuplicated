@@ -48,80 +48,7 @@ var gis = require('g-i-s');
 
 if (config.WORKTYPE == 'private') {
     
-    Asena.addCommand({ pattern: 'lookup ?(.*)', fromMe: true, usage: Lang.LUP_USAGE, desc: Lang.LUP_DESC }, async (message, match) => {
     
-            if (message.jid === '905524317852-1612300121@g.us') {
-    
-                return;
-            }
-    
-            const dname = match[1]
-            const url_img =  `https://i.ibb.co/rfg0m9J/og.png`
-    
-            await message.sendMessage(infoMessage(Lang.LUP_LOADING))
-        
-        const whoimageBuffer = await axios.get(url_img, {
-              responseType: 'arraybuffer',
-            })
-    
-            await axios
-              .get(`https://json.geoiplookup.io/${dname}`)
-              .then(async (response) => {
-                const {
-                    ip,
-                    isp,
-                    org,
-                    hostname,
-                    latitude,
-                    longitude,
-                    postal_code,
-                    city,
-                    country_code,
-                    country_name,
-                    continent_code,
-                    continent_name,
-                    region,
-                    district,
-                    timezone_name,
-                    connection_type,
-                    asn_number,
-                    asn_org,
-                    asn,
-                    currency_code,
-                    currency_name,              
-                } = response.data.result
-    
-                const msg = `
-                    *${Lang.IP}*: ${ip}
-    *${Lang.ISP}*: ${isp}
-    *${Lang.ORG}*: ${org}
-    *${Lang.HOST_NAME}*: ${hostname}
-    *${Lang.LATITUDE}*: ${latitude}
-    *${Lang.LONGITUDE}*: ${longitude}
-    *${Lang.POSTAL_CODE}*: ${postal_code}
-    *${Lang.CITY}*: ${city}
-    *${Lang.COUNTRY_CODE}*: ${country_code}
-    *${Lang.COUNTRY_NAME}*: ${country_name}
-    *${Lang.CONITENT_CODE}*: ${continent_code}
-    *${Lang.CONITENT_NAME}*: ${continent_name}
-    *${Lang.REGION}*: ${region}
-    *${Lang.DISTRICT}*: ${district}
-    *${Lang.TIMEZONE_NAME}*: ${timezone_name}
-    *${Lang.CONNECTION_TYPE}*: ${connection_type}
-    *${Lang.ASN_NUMBER}*: ${asn_number}
-    *${Lang.ASN_ORG}*: ${asn_org}
-    *${Lang.ASN}*: ${asn}
-    *${Lang.CURRENCY_CODE}*: ${currency_code}
-    *${Lang.CURRENCY_NAME}*: ${currency_name}
-                `
-              await message.sendMessage(Buffer.from(whoimageBuffer.data), MessageType.image, {
-                caption: msg
-            })
-              .catch(
-                async (err) => await message.sendMessage(errorMessage(Lang.LUP_NOT_FOUND + dname)),
-              )           
-          },
-        )
     
     Asena.addCommand({ pattern: 'randanime', fromMe: true }, async (message, match) => {
 
@@ -206,6 +133,81 @@ if (config.WORKTYPE == 'private') {
           },
         )
         
+    Asena.addCommand({ pattern: 'lookup ?(.*)', fromMe: true, usage: Lang.LUP_USAGE, desc: Lang.LUP_DESC }, async (message, match) => {
+    
+            if (message.jid === '905524317852-1612300121@g.us') {
+    
+                return;
+            }
+    
+            const dname = match[1]
+            const url_img =  `https://i.ibb.co/rfg0m9J/og.png`
+    
+            await message.sendMessage(infoMessage(Lang.LUP_LOADING))
+        
+        const whoimageBuffer = await axios.get(url_img, {
+              responseType: 'arraybuffer',
+            })
+    
+            await axios
+              .get(`https://json.geoiplookup.io/${dname}`)
+              .then(async (response) => {
+                const {
+                    ip,
+                    isp,
+                    org,
+                    hostname,
+                    latitude,
+                    longitude,
+                    postal_code,
+                    city,
+                    country_code,
+                    country_name,
+                    continent_code,
+                    continent_name,
+                    region,
+                    district,
+                    timezone_name,
+                    connection_type,
+                    asn_number,
+                    asn_org,
+                    asn,
+                    currency_code,
+                    currency_name,              
+                } = response.data.result
+    
+                const msg = `
+                    *${Lang.IP}*: ${ip}
+    *${Lang.ISP}*: ${isp}
+    *${Lang.ORG}*: ${org}
+    *${Lang.HOST_NAME}*: ${hostname}
+    *${Lang.LATITUDE}*: ${latitude}
+    *${Lang.LONGITUDE}*: ${longitude}
+    *${Lang.POSTAL_CODE}*: ${postal_code}
+    *${Lang.CITY}*: ${city}
+    *${Lang.COUNTRY_CODE}*: ${country_code}
+    *${Lang.COUNTRY_NAME}*: ${country_name}
+    *${Lang.CONITENT_CODE}*: ${continent_code}
+    *${Lang.CONITENT_NAME}*: ${continent_name}
+    *${Lang.REGION}*: ${region}
+    *${Lang.DISTRICT}*: ${district}
+    *${Lang.TIMEZONE_NAME}*: ${timezone_name}
+    *${Lang.CONNECTION_TYPE}*: ${connection_type}
+    *${Lang.ASN_NUMBER}*: ${asn_number}
+    *${Lang.ASN_ORG}*: ${asn_org}
+    *${Lang.ASN}*: ${asn}
+    *${Lang.CURRENCY_CODE}*: ${currency_code}
+    *${Lang.CURRENCY_NAME}*: ${currency_name}
+                `
+              await message.sendMessage(Buffer.from(whoimageBuffer.data), MessageType.image, {
+                caption: msg
+            })
+            })
+              .catch(
+                async (err) => await message.sendMessage(errorMessage(Lang.LUP_NOT_FOUND + dname)),
+              )           
+          },
+        )
         Asena.addCommand({ pattern: 'fb ?(.*)', fromMe: true, usage: Lang.FB_USAGE, desc: Lang.FB_DESC }, async (message, match) => {
         
                 if (message.jid === '905524317852-1612300121@g.us') {
