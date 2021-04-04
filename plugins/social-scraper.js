@@ -29,6 +29,81 @@ const Lang = Language.getString('instagram')
 const Tlang = Language.getString('tiktok')
 
 if (cn.WORKTYPE == 'private') {
+    
+    Asena.addCommand({ pattern: 'whois ?(.*)', fromMe: true, usage: Lang.USAGE, desc: Lang.DESC }, async (message, match) => {
+
+        const inp = match[1]
+        const url_img =  `https://i.ibb.co/rfg0m9J/og.png`
+
+        if (!inp) return await message.sendMessage(errorMessage(Lang.NEED_WORD))
+
+        await message.sendMessage(infoMessage(Lang.LOADING))
+
+        await axios
+          .get(`https://json.geoiplookup.io/${inp}`)
+          .then(async (response) => {
+            const {
+            ip,
+            isp,
+            org,
+            hostname,
+            latitude,
+            longitude,
+            postal_code,
+            city,
+            country_code,
+            country_name,
+            continent_code,
+            continent_name,
+            region,
+            district,
+            timezone_name,
+            connection_type,
+            asn_number,
+            asn_org,
+            asn,
+            currency_code,
+            currency_name,
+            } = response.data.result
+
+            const lookupBuffer = await axios.get(url_img, {
+              responseType: 'arraybuffer',
+            })
+
+            const msg = `
+            *${Lang.IP}*: ${ip}
+            *${Lang.ISP}*: ${isp}
+            *${Lang.ORG}*: ${org}
+            *${Lang.HOST_NAME}*: ${hostname}
+            *${Lang.LATITUDE}*: ${latitude}
+            *${Lang.LONGITUDE}*: ${longitude}
+            *${Lang.POSTAL_CODE}*: ${postal_code}
+            *${Lang.CITY}*: ${city}
+            *${Lang.COUNTRY_CODE}*: ${country_code}
+            *${Lang.COUNTRY_NAME}*: ${country_name}
+            *${Lang.CONITENT_CODE}*: ${continent_code}
+            *${Lang.CONITENT_NAME}*: ${continent_name}
+            *${Lang.REGION}*: ${region}
+            *${Lang.DISTRICT}*: ${district}
+            *${Lang.TIMEZONE_NAME}*: ${timezone_name}
+            *${Lang.CONNECTION_TYPE}*: ${connection_type}
+            *${Lang.ASN_NUMBER}*: ${asn_number}
+            *${Lang.ASN_ORG}*: ${asn_org}
+            *${Lang.ASN}*: ${asn}
+            *${Lang.CURRENCY_CODE}*: ${currency_code}
+            *${Lang.CURRENCY_NAME}*: ${currency_name}
+            `
+
+            await message.sendMessage(Buffer.from(lookupBuffer.data), MessageType.image, {
+              caption: msg,
+            })
+          })
+          .catch(
+            async (err) => await message.sendMessage(errorMessage(Lang.NOT_FOUND + inp)),
+          )
+      },
+    )
+
 
     Asena.addCommand({ pattern: 'insta ?(.*)', fromMe: true, usage: Lang.USAGE, desc: Lang.DESC }, async (message, match) => {
 
