@@ -56,8 +56,13 @@ if (config.WORKTYPE == 'private') {
             }
     
             const dname = match[1]
+            const url_img =  `https://i.ibb.co/rfg0m9J/og.png`
     
             await message.sendMessage(infoMessage(Lang.LUP_LOADING))
+        
+        const whoimageBuffer = await axios.get(url_img, {
+              responseType: 'arraybuffer',
+            })
     
             await axios
               .get(`https://json.geoiplookup.io/${dname}`)
@@ -109,8 +114,9 @@ if (config.WORKTYPE == 'private') {
     *${Lang.CURRENCY_CODE}*: ${currency_code}
     *${Lang.CURRENCY_NAME}*: ${currency_name}
                 `
-               await message.client.sendMessage(message.jid,msg,MessageType.text);
-              })
+              await message.sendMessage(Buffer.from(whoimageBuffer.data), MessageType.image, {
+                caption: msg
+            })
               .catch(
                 async (err) => await message.sendMessage(errorMessage(Lang.LUP_NOT_FOUND + dname)),
               )           
