@@ -214,7 +214,7 @@
             "CURRENCY_NAME": "Currency Name",
             "LUP_USAGE": "Please enter domain name or IP address...",
     "LUP_DESC": "whois lookup of domain or IP",
-    "LUP_NEED_WORD": "whois <IP or Domain name>",
+    "LUP_NEED_WORD": "lookup <IP or Domain name>",
     "LUP_LOADING": "fetching the lookup data...",
     "LUP_NOT_FOUND": "not found...",
     "IG_NEED_WORD": "Please enter video URL...",
