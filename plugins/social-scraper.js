@@ -27,85 +27,10 @@ const Language = require('../language')
 const { errorMessage, infoMessage } = require('../helpers')
 const Lang = Language.getString('instagram')
 const Tlang = Language.getString('tiktok')
-const Lung - Language.getString('scrapers')
 
 if (cn.WORKTYPE == 'private') {
     
-    Asena.addCommand({ pattern: 'whois ?(.*)', fromMe: true, usage: Lung.LUP_USAGE, desc: Lung.LUP_DESC }, async (message, match) => {
-
-        const inp = match[1]
-        const url_img =  `https://i.ibb.co/rfg0m9J/og.png`
-
-        if (!inp) return await message.sendMessage(errorMessage(Lung.LUP_NEED_WORD))
-
-        await message.sendMessage(infoMessage(Lung.LUP_LOADING))
-
-        await axios
-          .get(`https://json.geoiplookup.io/${inp}`)
-          .then(async (response) => {
-            const {
-            ip,
-            isp,
-            org,
-            hostname,
-            latitude,
-            longitude,
-            postal_code,
-            city,
-            country_code,
-            country_name,
-            continent_code,
-            continent_name,
-            region,
-            district,
-            timezone_name,
-            connection_type,
-            asn_number,
-            asn_org,
-            asn,
-            currency_code,
-            currency_name,
-            } = response.data.result
-
-            const lookupBuffer = await axios.get(url_img, {
-              responseType: 'arraybuffer',
-            })
-
-            const msg = `
-            *${Lung.IP}*: ${ip}
-            *${Lung.ISP}*: ${isp}
-            *${Lung.ORG}*: ${org}
-            *${Lung.HOST_NAME}*: ${hostname}
-            *${Lung.LATITUDE}*: ${latitude}
-            *${Lung.LONGITUDE}*: ${longitude}
-            *${Lung.POSTAL_CODE}*: ${postal_code}
-            *${Lung.CITY}*: ${city}
-            *${Lung.COUNTRY_CODE}*: ${country_code}
-            *${Lung.COUNTRY_NAME}*: ${country_name}
-            *${Lung.CONITENT_CODE}*: ${continent_code}
-            *${Lung.CONITENT_NAME}*: ${continent_name}
-            *${Lung.REGION}*: ${region}
-            *${Lung.DISTRICT}*: ${district}
-            *${Lung.TIMEZONE_NAME}*: ${timezone_name}
-            *${Lung.CONNECTION_TYPE}*: ${connection_type}
-            *${Lung.ASN_NUMBER}*: ${asn_number}
-            *${Lung.ASN_ORG}*: ${asn_org}
-            *${Lung.ASN}*: ${asn}
-            *${Lung.CURRENCY_CODE}*: ${currency_code}
-            *${Lung.CURRENCY_NAME}*: ${currency_name}
-            `
-
-            await message.sendMessage(Buffer.from(lookupBuffer.data), MessageType.image, {
-              caption: msg,
-            })
-          })
-          .catch(
-            async (err) => await message.sendMessage(errorMessage(Lung.LUP_NOT_FOUND + inp)),
-          )
-      },
-    )
-
-
+    
     Asena.addCommand({ pattern: 'insta ?(.*)', fromMe: true, usage: Lang.USAGE, desc: Lang.DESC }, async (message, match) => {
 
         const userName = match[1]
