@@ -59,7 +59,6 @@ if (config.WORKTYPE == 'private') {
           .get(`https://videfikri.com/api/anime/neko`)
           .then(async (response) => {
             const {
-              status,
               url_gbr,
             } = response.data.result
 
@@ -67,11 +66,7 @@ if (config.WORKTYPE == 'private') {
               responseType: 'arraybuffer',
             })
 
-            const msg = `
-            *${Lang.HTTP_STATUS}*: ${status}
-            `
             await message.sendMessage(Buffer.from(imageBuffer.data), MessageType.image, {
-                caption: msg
             })
           })
       },
@@ -88,41 +83,20 @@ if (config.WORKTYPE == 'private') {
     
             if (!link) return await message.sendMessage(errorMessage(Lang.IG_NEED_WORD))
     
-            await message.sendMessage(infoMessage(Lang.IG_LOADING))
-    
             await axios
               .get(`https://videfikri.com/api/igdl/?url=${link}`)
               .then(async (response) => {
                 const {
-                  status,  
-                  creator,
-                  type_post,
-                  full_name,
-                  username,
-                  caption,
-                  like,
-                  comment,
                   video,
-                  duration,
                 } = response.data.result
                 
                 const videoBuffer = await axios.get(video, {
                   responseType: 'arraybuffer',
                 })
     
-                const msg = `
-                *${Lang.HTTP_STATUS}*: ${status}
-                *${Lang.CREATOR}*: ${creator}
-                *${Lang.TYPE_HOST}*: ${type_post}
-                *${Lang.FULL_NAME}*: ${full_name}
-                *${Lang.USERNAME}*: ${username}
-                *${Lang.CAPTON}*: ${caption}
-                *${Lang.LIKE}*: ${like}
-                *${Lang.COMMENT}*: ${comment}
-                *${Lang.DURATION}*: ${duration}
-                `
+                
                 await message.sendMessage(Buffer.from(videoBuffer.data), MessageType.video, {
-                    caption: msg
+                   
                 })
               })
               .catch(
@@ -143,30 +117,20 @@ if (config.WORKTYPE == 'private') {
                 const link = match[1]
         
                 if (!link) return await message.sendMessage(errorMessage(Lang.FB_NEED_WORD))
-        
-                await message.sendMessage(infoMessage(Lang.FB_LOADING))
-        
+  
+
                 await axios
                   .get(`https://videfikri.com/api/fbdl/?urlfb=${link}`)
                   .then(async (response) => {
                     const {
-                      status,
-                      creator,
-                      judul,
                       url,
                     } = response.data.result
         
                     const videoBuffer = await axios.get(url, {
                       responseType: 'arraybuffer',
                     })
-        
-                    const msg = `
-                    *${Lang.HTTP_STATUS}*: ${status}
-                    *${Lang.CREATOR}*: ${creator}
-                    *${Lang.CAPTION}*: ${judul}
-                    `
                     await message.sendMessage(Buffer.from(videoBuffer.data), MessageType.video, {
-                        caption: msg
+                       
                     })
                   })
                   .catch(
@@ -186,8 +150,7 @@ if (config.WORKTYPE == 'private') {
 
         if (!link) return await message.sendMessage(errorMessage(Lang.TWEET_NEED_WORD))
 
-        await message.sendMessage(infoMessage(Lang.TWEET_LOADING))
-
+        
                 await axios
                   .get(`https://videfikri.com/api/stalktwit/?username=${link}`)
                   .then(async (response) => {
