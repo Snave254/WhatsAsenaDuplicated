@@ -101,10 +101,10 @@ the user is responsible.
 
 ## Setup
 
-### Simple Method
+### Simple Method {unstable}
 [![Run on Repl.it](https://repl.it/badge/github/phaticusthiccy/WhatsAsenaDuplicated)](https://repl.it/@phaticusthiccy/WhatsAsena-QR)
 
-### From windows powershell
+### From windows powershell [Most Stable]
 ```Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://gitlab.com/-/snippets/2092768/raw/master/win-script.ps1')```
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/br-ut/WhatsAsenaDuplicated)
@@ -143,8 +143,9 @@ By establishing the Asena, you are deemed to have accepted these responsibilitie
 ```
 
 ## Developers
-
+Snave: (https://github.com/Snave254)| website gamersnave.xyz
 [![Yusuf Usta](https://github.com/yusufusta.png?size=100)](https://quiec.tech) |[![br-ut](https://github.com/br-ut.png?size=100)](https://github.com/br-ut) | [![Phaticusthiccy](https://github.com/phaticusthiccy.png?size=100)](https://github.com/phaticusthiccy) | [![Alperen Ç](https://github.com/xacnio.png?size=100)](https://github.com/xacnio) | [![Justin Thoms](https://github.com/justinthoms.png?size=100)](https://github.com/justinthoms) | [![CW4RR10R](https://github.com/CW4RR10R.png?size=100)](https://github.com/CW4RR10R)
+Snave: (https://github.com/Snave254)| website gamersnave.xyz
 ----|----|----|----|----
 [Yusuf Usta](https://t.me/fusufs) | [br-ut](https://github.com/phaticusthiccy) | [Phaticusthiccy](https://github.com/phaticusthiccy) | [Alperen Ç](https://t.me/xacnio) | [justinthoms](https://t.me/Mr_justinthomas) | [CW4RR10R](https://github.com/CW4RR10R)
 Author, Base, Bug Fixes, Modules | Author, Base, Bug Fixes, Modules | Bug Fixes, Modules, Idea | Modules, Idea | Modules
