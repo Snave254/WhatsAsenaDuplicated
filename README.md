@@ -143,7 +143,6 @@ By establishing the Asena, you are deemed to have accepted these responsibilitie
 ```
 
 ## Developers
-Snave: (https://github.com/Snave254)| website gamersnave.xyz
 [![Yusuf Usta](https://github.com/yusufusta.png?size=100)](https://quiec.tech) |[![br-ut](https://github.com/br-ut.png?size=100)](https://github.com/br-ut) | [![Phaticusthiccy](https://github.com/phaticusthiccy.png?size=100)](https://github.com/phaticusthiccy) | [![Alperen Ç](https://github.com/xacnio.png?size=100)](https://github.com/xacnio) | [![Justin Thoms](https://github.com/justinthoms.png?size=100)](https://github.com/justinthoms) | [![CW4RR10R](https://github.com/CW4RR10R.png?size=100)](https://github.com/CW4RR10R)
 Snave: (https://github.com/Snave254)| website gamersnave.xyz
 ----|----|----|----|----
